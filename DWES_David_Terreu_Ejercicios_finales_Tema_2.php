@@ -144,3 +144,41 @@ echo "\nValor total del inventario: " . $valorTotal . "\n";
 echo "\n\n";
 echo "Ejercicio 4";
 echo "\n";
+
+$texto = readline("Introduce el texto: \n");
+
+function analizarTexto($texto) {
+    //Contar palabras
+    $separar_texto = preg_replace('/[^\p{L}\p{N}\s]+/u', ' ', $texto);
+    $separado = explode(' ', $separar_texto);
+    $palabras = [];
+    foreach ($separado as $p) {
+        $p = mb_strtolower($p);
+        if ($p !== '') {
+            $palabras[] = $p;
+        }
+    }
+    $numPalabras = count($palabras);
+
+    //Frecuencia de cada palabra
+    $frecuencia = array_count_values($palabras);
+
+    //Longitud promedio
+    $longitudTotal = array_sum(array_map('strlen', $palabras));
+    $longitudPromedio = $numPalabras > 0 ? $longitudTotal / $numPalabras : 0;
+
+    return [
+        'totalPalabras' => $numPalabras,
+        'frecuencia' => $frecuencia,
+        'longitudPromedio' => $longitudPromedio,
+    ];
+}
+
+echo "Análisis del texto:\n";
+$resultado = analizarTexto($texto);
+echo "Total de palabras: " . $resultado['totalPalabras'] . "\n";
+echo "Frecuencia de palabras:\n";
+foreach ($resultado['frecuencia'] as $palabra => $count) {
+    echo "- " . $palabra . ": " . $count . "\n";
+}
+echo "Longitud promedio de palabras: " . $resultado['longitudPromedio'] . "\n";
