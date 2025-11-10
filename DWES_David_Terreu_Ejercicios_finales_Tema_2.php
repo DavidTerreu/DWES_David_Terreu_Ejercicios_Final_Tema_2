@@ -89,12 +89,57 @@ if (empty($errores)) {
         echo "- " . $error . "\n";
     }
 }
-*/
+
 //Ejercicio 3. Manipulación de Arrays
 echo "\n\n";
 echo "Ejercicio 3";
 echo "\n";
 
+$productos = [
+    ["id" => 1, "nombre" => "Laptop", "precio" => 899.99, "stock" => 10],
+    ["id" => 2, "nombre" => "Telefono", "precio" => 499.99, "stock" => 15],
+    ["id" => 3, "nombre" => "Tablet", "precio" => 349.99, "stock" => 5],
+    ["id" => 4, "nombre" => "Monitor", "precio" => 299.99, "stock" => 8],
+];
+
+//Filtrar productos con precio mayor a 300
+function filtrarProductosPorPrecio($productos, $precioMinimo = 300) {
+    return array_filter($productos, function($producto) use ($precioMinimo) {
+        return $producto['precio'] > $precioMinimo;
+    });
+}
+
+//Ordenar por precio (ascendente)
+function ordenarProductosPorPrecio($productos) {
+    usort($productos, function($a, $b) {
+        return $a['precio'] <=> $b['precio'];
+    });
+    return $productos;
+}
+
+//Calcular valor total del inventario
+function valorTotalInventario($productos) {
+    $total = 0;
+    foreach ($productos as $producto) {
+        $total += $producto['precio'] * $producto['stock'];
+    }
+    return $total;
+}
+
+$filtrarPrecio = filtrarProductosPorPrecio($productos, 300);
+$ordenarPrecio = ordenarProductosPorPrecio($productos);
+$valorTotal = valorTotalInventario($productos);
+
+echo "Productos con precio mayor a 300:\n";
+foreach ($filtrarPrecio as $producto) {
+    echo "- " . $producto['nombre'] . " (Precio: " . $producto['precio'] . ")\n";
+}
+echo "\nProductos ordenados por precio (ascendente):\n";
+foreach ($ordenarPrecio as $producto) {
+    echo "- " . $producto['nombre'] . " (Precio: " . $producto['precio'] . ")\n";
+}
+echo "\nValor total del inventario: " . $valorTotal . "\n";
+*/
 //Ejercicio 4. Procesador de Texto
 echo "\n\n";
 echo "Ejercicio 4";
