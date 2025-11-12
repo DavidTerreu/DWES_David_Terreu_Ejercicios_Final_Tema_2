@@ -47,6 +47,21 @@ function calculadora($num1, $num2, $operador){
 }
 
 echo "El resultado de la operación " . $operador . " entre " . $num1 . " y " . $num2 . " es: " . calculadora($num1, $num2, $operador);
+
+//Reto adicional. Ampliar la calculadora para incluir operaciones como potencia, raíz cuadrada y módulo.
+//Implementar manejo de errores con excepciones.
+
+function calculadora2($num1, $num2, $operador){
+    return match ($operador) {
+        '+' => $num1 + $num2,
+        '-' => $num1 - $num2,
+        '*' => $num1 * $num2,
+        '/' => $num2 != 0 ? $num1 / $num2 : 'Error: No se puede dividir por cero',
+        '%' => $num2 != 0 ? $num1 % $num2 : 'Error: No se puede calcular el módulo con divisor cero',
+        '^' => pow($num1, $num2),
+        '√' => $num1 >= 0 ? sqrt($num1) : 'Error: No se puede calcular la raíz cuadrada de un número negativo',
+    };
+}
 */
 /*
 //Ejercicio 2. Validador de Formularios
@@ -195,4 +210,6 @@ foreach ($resultado['frecuencia'] as $palabra => $count) {
     echo "- " . $palabra . ": " . $count . "\n";
 }
 echo "Longitud promedio de palabras: " . $resultado['longitudPromedio'] . "\n";
+//Reto adicional. Ampliar el procesador para identificar n-gramas (secuencias de n palabras) y detectar
+//frases comunes en el texto.
 */
