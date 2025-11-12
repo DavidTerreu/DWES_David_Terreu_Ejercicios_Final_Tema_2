@@ -47,7 +47,8 @@ function calculadora($num1, $num2, $operador){
 }
 
 echo "El resultado de la operación " . $operador . " entre " . $num1 . " y " . $num2 . " es: " . calculadora($num1, $num2, $operador);
-
+*/
+/*
 //Ejercicio 2. Validador de Formularios
 echo "\n\n";
 echo "Ejercicio 2";
@@ -89,7 +90,8 @@ if (empty($errores)) {
         echo "- " . $error . "\n";
     }
 }
-
+*/
+/*
 //Ejercicio 3. Manipulación de Arrays
 echo "\n\n";
 echo "Ejercicio 3";
@@ -139,7 +141,18 @@ foreach ($ordenarPrecio as $producto) {
     echo "- " . $producto['nombre'] . " (Precio: " . $producto['precio'] . ")\n";
 }
 echo "\nValor total del inventario: " . $valorTotal . "\n";
+//Reto adicional. Implementar una función de búsqueda que permita filtrar productos por nombre
+//usando coincidencias parciales.
+$nombre = readline("\nIntroduce el nombre a buscar: ");
+function buscarProductosPorNombre($productos, $nombre) {
+    return array_filter($productos, function($producto) use ($nombre) {
+        return stripos($producto['nombre'], $nombre) !== false;
+    });
+}
+
+echo buscarProductosPorNombre($productos, $nombre);
 */
+/*
 //Ejercicio 4. Procesador de Texto
 echo "\n\n";
 echo "Ejercicio 4";
@@ -182,3 +195,4 @@ foreach ($resultado['frecuencia'] as $palabra => $count) {
     echo "- " . $palabra . ": " . $count . "\n";
 }
 echo "Longitud promedio de palabras: " . $resultado['longitudPromedio'] . "\n";
+*/
