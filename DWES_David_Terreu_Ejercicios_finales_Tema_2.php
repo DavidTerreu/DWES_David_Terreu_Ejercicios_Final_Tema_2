@@ -105,6 +105,44 @@ if (empty($errores)) {
         echo "- " . $error . "\n";
     }
 }
+
+//Reto adicional. Crear una clase Validador que encapsule todas las funciones y devuelva mensajes de
+//error específicos para cada campo.
+
+class Validador {
+    function validarFormulario($nombre, $email, $telefono, $contrasenia) {
+        $errores = [];
+
+        if (empty($nombre) || !preg_match("/^[a-zA-Z\s]+$/", $nombre)) {
+            $errores[] = "El nombre es obligatorio y solo debe contener letras y espacios.";
+        }
+
+        if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errores[] = "El correo electrónico no es válido.";
+        }
+
+        if (empty($telefono) || !preg_match("/^\d{9}$/", $telefono)) {
+            $errores[] = "El número de teléfono debe contener exactamente 9 dígitos.";
+        }
+
+        if (empty($contrasenia) || strlen($contrasenia) < 8) {
+            $errores[] = "La contraseña debe tener al menos 8 caracteres.";
+        }
+
+        return $errores;
+    }
+
+    $errores = validarFormulario($nombre, $email, $telefono, $contrasenia);
+
+    if (empty($errores)) {
+    echo "Formulario válido\n";
+    } else {
+        echo "Errores en el formulario:\n";
+        foreach ($errores as $error) {
+            echo "- " . $error . "\n";
+        }
+    }
+}
 */
 /*
 //Ejercicio 3. Manipulación de Arrays
